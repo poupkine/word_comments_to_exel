@@ -13,12 +13,16 @@ Dim i As Integer
     Set xlWB = xlApp.Workbooks.Add        ' create a new workbook
     With xlWB.Worksheets(1)
         For i = 1 To ActiveDocument.Comments.Count
-            .Cells(i, 1).Formula = ActiveDocument.Comments(i).Author
-            .Cells(i, 2).Formula = ActiveDocument.Comments(i).Range
-            .Cells(i, 3).Formula = ActiveDocument.Comments(i).Scope.Text
-            .Cells(i, 4).Formula = Format(ActiveDocument.Comments(i).Date, "dd/MM/yyyy")
+            .Cells(i+1, 1).Formula = ActiveDocument.Comments(i).Author
+            .Cells(i+1, 2).Formula = ActiveDocument.Comments(i).Range
+            .Cells(i+1, 3).Formula = ActiveDocument.Comments(i).Scope.Text
+            .Cells(i+1, 4).Formula = Format(ActiveDocument.Comments(i).Date, "dd/MM/yyyy")
             
         Next i
+	    .Cells(1, 1).Value = "Author of the comment"
+            .Cells(1, 2).Value = "Comment"
+            .Cells(1, 3).Value = "Linked text"
+            .Cells(1, 4).Value = "Date of the comment"
     End With
     Set xlWB = Nothing
     Set xlApp = Nothing
